@@ -1,5 +1,6 @@
 import readline
 import random
+import base64
 import time
 import sys
 import os
@@ -11,7 +12,7 @@ BANNER = f"""  _    _        _______          _
  | |  | |  __/>  <| | (_) | (_) | \__ \\
  |_|  |_|\___/_/\_\_|\___/ \___/|_|___/
 
-         # That backslash XD
+          # That backslash XD
 
 """
 
@@ -98,6 +99,26 @@ def hex_decode_panel(hex_data: str = None):
 
         print(f"{output}\n")
 
+@tool_panel(tool_name="Base64 Encode", description="Encode data to base64.")
+def b64_encode_panel(data: str = None):
+    if data:
+        return base64.b64encode(data.encode()).decode()
+    
+    while True:
+        data = input("Hex Data: ")
+        output = base64.b64encode(data.encode()).decode()
+        print(f"{output}\n")
+
+@tool_panel(tool_name="Base64 Decode", description="Decode base64 data to readable text.")
+def b64_decode_panel(data: str = None):
+    if data:
+        return base64.b64decode(data.encode()).decode()
+    
+    while True:
+        data = input("Hex Data: ")
+        output = base64.b64decode(data.encode()).decode()
+        print(f"{output}\n")
+
 def main_panel():
     while True:
         print(f"\t{Colors.cyan}Select a tool:{Colors.reset}\n")
@@ -108,7 +129,7 @@ def main_panel():
             tool_selections[str(i)] = tool
             print(f"\t\t{Colors.cyan}{i}{Colors.reset} . {tool} - {tool_panels[tool]['description']}")
         
-        print(f"\n\t\tTip: You can directly encode/decode data by typing\n\t\tit as an argument. For example: `1 plain text`\n\n")
+        print(f"\n\t\tTip: You can directly encode/decode data by typing\n\t\tit as an argument. For example: `{Colors.blue}1{Colors.reset} plain text`\n\n")
 
         while True:
             query = input(f"{Colors.cyan}>{Colors.reset} ").strip().split(" ", 1)
