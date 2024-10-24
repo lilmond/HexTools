@@ -28,6 +28,9 @@ class Colors:
 class InvalidHexMessage(Exception):
     pass
 
+class InvalidBase64Data(Exception):
+    pass
+
 def clear_console():
     if sys.platform == "win32":
         os.system("cls")
@@ -90,13 +93,7 @@ def hex_decode_panel(hex_data: str = None):
     
     while True:
         hex_data = input("Hex Data: ")
-        
-        try:
-            output = decode_hex(hex_data)
-        except Exception:
-            print(f"Error: Invalid hex data.\n")
-            continue
-
+        output = decode_hex(hex_data)
         print(f"{output}\n")
 
 @tool_panel(tool_name="Base64 Encode", description="Encode data to base64.")
@@ -112,11 +109,20 @@ def b64_encode_panel(data: str = None):
 @tool_panel(tool_name="Base64 Decode", description="Decode base64 data to readable text.")
 def b64_decode_panel(data: str = None):
     if data:
-        return base64.b64decode(data.encode()).decode()
-    
+        try:
+            return base64.b64decode(data.encode()).decode()
+        except Exception:
+            raise InvalidBase64Data("Invalid base64 data.")
+            
     while True:
         data = input("Hex Data: ")
-        output = base64.b64decode(data.encode()).decode()
+
+        try:
+            output = base64.b64decode(data.encode(), validate=True).decode()
+        except Exception:
+            print("Error: Invalid base64 data.\n")
+            continue
+
         print(f"{output}\n")
 
 def main_panel():
@@ -145,8 +151,12 @@ def main_panel():
             tool_description = tool["description"]
 
             if len(query) > 1:
-                output = tool_function(query[1])
-                print(f"{output}\n")
+                try:
+                    output = tool_function(query[1])
+                    print(f"{output}\n")
+                except Exception as e:
+                    print(f"Error: {e}\n")
+
                 continue
 
             print(f"Launching {Colors.blue}{tool_name}{Colors.reset}.")
