@@ -136,7 +136,7 @@ def main_panel():
             tool_selections[str(i)] = tool
             print(f"    {Colors.cyan}{i}{Colors.reset} . {tool} - {tool_panels[tool]['description']}")
         
-        print(f"\n  Tip: You can directly encode/decode data by typing\n  it as an argument. For example: `{Colors.cyan}1{Colors.reset} plain text`\n\n")
+        print(f"\n  Tip: You can directly encode/decode data by typing\n  it as an argument. For example: `{Colors.cyan}>{Colors.reset} 1 plain text`\n\n")
 
         while True:
             query = input(f"{Colors.cyan}>{Colors.reset} ").strip().split(" ", 1)
