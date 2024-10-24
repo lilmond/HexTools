@@ -5,26 +5,28 @@ import time
 import sys
 import os
 
-BANNER = r"""  _    _        _______          _     
- | |  | |      |__   __|        | |    
- | |__| | _____  _| | ___   ___ | |___ 
- |  __  |/ _ \ \/ / |/ _ \ / _ \| / __|
- | |  | |  __/>  <| | (_) | (_) | \__ \
- |_|  |_|\___/_/\_\_|\___/ \___/|_|___/
-
-          # That backslash XD
-
-
-"""
-
 class Colors:
     red = "\u001b[31;1m"
     green = "\u001b[32;1m"
+    green_dim = "\u001b[32;3m"
     yellow = "\u001b[33;1m"
     blue = "\u001b[34;1m"
     purple = "\u001b[35;1m"
     cyan = "\u001b[36;1m"
     reset = "\u001b[0;0m"
+
+BANNER = r"""  _    _        _______          _     
+| |  | |      |__   __|        | |    
+| |__| | _____  _| | ___   ___ | |___ 
+|  __  |/ _ \ \/ / |/ _ \ / _ \| / __|
+| |  | |  __/>  <| | (_) | (_) | \__ \
+|_|  |_|\___/_/\_\_|\___/ \___/|_|___/
+    
+  {}Encode/decode data easier, faster.{}
+         {}# That backslash XD{}
+
+
+""".format("\u001b[32;7m", Colors.reset, Colors.green_dim, Colors.reset)
 
 class InvalidHexMessage(Exception):
     pass
