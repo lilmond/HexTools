@@ -5,11 +5,11 @@ import time
 import sys
 import os
 
-BANNER = f"""  _    _        _______          _     
+BANNER = r"""  _    _        _______          _     
  | |  | |      |__   __|        | |    
  | |__| | _____  _| | ___   ___ | |___ 
  |  __  |/ _ \ \/ / |/ _ \ / _ \| / __|
- | |  | |  __/>  <| | (_) | (_) | \__ \\
+ | |  | |  __/>  <| | (_) | (_) | \__ \
  |_|  |_|\___/_/\_\_|\___/ \___/|_|___/
 
           # That backslash XD
@@ -160,7 +160,7 @@ def main_panel():
                 break
 
 def main():
-    clear_console()
+    #clear_console()
     show_banner()
     main_panel()
 
