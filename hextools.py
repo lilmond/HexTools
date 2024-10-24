@@ -14,6 +14,7 @@ BANNER = r"""  _    _        _______          _
 
           # That backslash XD
 
+
 """
 
 class Colors:
@@ -113,7 +114,7 @@ def b64_decode_panel(data: str = None):
             return base64.b64decode(data.encode()).decode()
         except Exception:
             raise InvalidBase64Data("Invalid base64 data.")
-            
+
     while True:
         data = input("Hex Data: ")
 
@@ -127,15 +128,15 @@ def b64_decode_panel(data: str = None):
 
 def main_panel():
     while True:
-        print(f"\t{Colors.cyan}Select a tool:{Colors.reset}\n")
+        print(f"  {Colors.cyan}Select a tool:{Colors.reset}\n")
 
         tool_selections = {}
 
         for i, tool in enumerate(tool_panels, start=1):
             tool_selections[str(i)] = tool
-            print(f"\t\t{Colors.cyan}{i}{Colors.reset} . {tool} - {tool_panels[tool]['description']}")
+            print(f"    {Colors.cyan}{i}{Colors.reset} . {tool} - {tool_panels[tool]['description']}")
         
-        print(f"\n\t\tTip: You can directly encode/decode data by typing\n\t\tit as an argument. For example: `{Colors.blue}1{Colors.reset} plain text`\n\n")
+        print(f"\n  Tip: You can directly encode/decode data by typing\n  it as an argument. For example: `{Colors.cyan}1{Colors.reset} plain text`\n\n")
 
         while True:
             query = input(f"{Colors.cyan}>{Colors.reset} ").strip().split(" ", 1)
