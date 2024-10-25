@@ -9,6 +9,7 @@ class Colors:
     red = "\u001b[31;1m"
     green = "\u001b[32;1m"
     green_dim = "\u001b[32;3m"
+    green_back = "\u001b[32;7m"
     yellow = "\u001b[33;1m"
     blue = "\u001b[34;1m"
     purple = "\u001b[35;1m"
@@ -26,7 +27,7 @@ BANNER = r""" _    _        _______          _
          {}# That backslash XD{}
 
 
-""".format("\u001b[32;7m", Colors.reset, Colors.green_dim, Colors.reset)
+""".format(Colors.green_back, Colors.reset, Colors.green_dim, Colors.reset)
 
 class InvalidHexMessage(Exception):
     pass
@@ -45,6 +46,10 @@ def show_banner():
     max_width = 0
 
     for line in BANNER.splitlines():
+        for char in Colors.__dict__.values():
+            if len(str(char)) == 7:
+                line = line.replace(char, "")
+
         if len(line) > max_width:
             max_width = len(line)
     
